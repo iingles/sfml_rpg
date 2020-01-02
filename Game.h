@@ -20,6 +20,10 @@ private:
 	sf::RenderWindow *window;
 	sf::Event sfEvent;
 
+	//Delta time keeps track of how long it takes to do one update call and one render call (frame)
+	sf::Clock dtClock;
+	float dt;
+
 	//Initialization functions
 	void initWindow();
 
@@ -29,6 +33,7 @@ public:
 	virtual ~Game();
 
 	//functions
+	void updateDt();
 	void updateSFMLEvents();
 	void update();
 	void render();

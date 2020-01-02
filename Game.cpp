@@ -6,6 +6,7 @@
 //Initializer functions
 void Game::initWindow()
 {
+    //Create a SFML window using options from a window.init file
 	this -> window = new sf::RenderWindow(sf::VideoMode(800, 600), "C++ SFML RPG!");
 }
 
@@ -22,6 +23,14 @@ Game::~Game()
 }
 
 //functions
+
+void Game::updateDt()    
+{
+    //updates the dt variable with the time it takes to update and render one frame
+    this->dt = this->dtClock.restart().asSeconds();
+    system("cls");
+    std::cout << this->dt << "\n";
+}
 
 void Game::updateSFMLEvents()
 {
@@ -49,6 +58,7 @@ void Game::run()
 {
     while (this->window->isOpen())
     {
+        this->updateDt();
         this->update();
         this->render();
     }
