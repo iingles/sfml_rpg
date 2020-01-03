@@ -3,11 +3,32 @@
 //Static functions
 
 //Initializer functions
-//Initializer functions
 void Game::initWindow()
 {
     //Create a SFML window using options from a window.init file
-	this -> window = new sf::RenderWindow(sf::VideoMode(800, 600), "C++ SFML RPG!");
+	
+    std::ifstream ifs("config/window.ini");
+       
+    std::string title = "None";
+    sf::VideoMode window_bounds(800, 600);
+    unsigned framerate_limit = 120;
+    bool vertical_sync_enabled = false;
+
+    if (ifs.is_open())
+    {
+        std::getline(ifs, title);
+        ifs >> window_bounds.width >> window_bounds.height;
+        ifs >> framerate_limit;
+        ifs >> vertical_sync_enabled;
+    }
+
+    //don't forget to close the file!
+    ifs.close();
+
+    //Used c_str() here because for some reason it was failing without it
+    this->window = new sf::RenderWindow(window_bounds, title.c_str());
+    this->window ->setFramerateLimit(framerate_limit);
+    this->window ->setVerticalSyncEnabled(vertical_sync_enabled);
 }
 
 //Constructors/destructors
