@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "State.h"
+#include "GameState.h"
 
 
 class Game
@@ -15,8 +15,15 @@ private:
 	sf::Clock dtClock;
 	float dt;
 
+	/*
+		State pointer; State is an abstract class so we can only create pointers
+		Here we create a stack to add states to
+	*/
+	std::stack<State*> states;
+	
 	//Initialization functions
 	void initWindow();
+	void initStates();
 
 public:
 	//Constructors/destructors
