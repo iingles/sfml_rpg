@@ -3,9 +3,25 @@
 State::State(sf::RenderWindow* window)
 {
 	this->window = window;
+	this->quit = false;
 }
 
 State::~State()
 {
 
 }
+
+const bool& State::getQuit() const
+{
+	return this->quit;
+}
+
+void State::checkForQuit()
+{
+	//Check for buttons/actions that trigger quit
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		this->quit = true;
+	}
+}
+

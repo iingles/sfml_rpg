@@ -31,10 +31,20 @@ public:
 	virtual ~Game();
 
 	//functions
+
+	//regular
+	void endApplication();
+
+
+	//update
 	void updateDt();
 	void updateSFMLEvents();
 	void update();
+
+	//render
 	void render();
+
+	//core
 	void run();
 };
 

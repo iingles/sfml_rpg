@@ -25,13 +25,19 @@ class State
 private:
 	sf::RenderWindow* window;
 	std::vector<sf::Texture*> textures;
+	bool quit;
 
 public:
 	State(sf::RenderWindow* window);
 	virtual ~State();
 
+	const bool& getQuit() const;
+
+	virtual void checkForQuit();
 	virtual void endState() = 0;
 
+	//Every function needs to define updateKeyBinds
+	virtual void updateKeyBinds(const float& dt) = 0;
 	virtual void update(const float& dt) = 0;
 
 	//if nothing is given, render to the window; if to a specific target, render here. 
